@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { getData } from '../api-utils'
 import '../App.css'
-
+import MovieList from './MovieList.js'
 export default class SearchPage extends Component {
     state={
         movies:[],
@@ -24,6 +24,7 @@ export default class SearchPage extends Component {
                     <input onChange={this.handleSearchChange} value={this.state.query}/>
                     <button>search</button>
                 </form>
+                <MovieList movies={this.state.movies}/>
             </div>
         )
     }
