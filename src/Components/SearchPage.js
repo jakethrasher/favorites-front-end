@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { getData } from '../api-utils'
+import { createFavorite, getData } from '../api-utils'
 import '../App.css'
 import MovieList from './MovieList.js'
 export default class SearchPage extends Component {
     state={
         movies:[],
-        query:'jurassic',
+        query:'',
     }
     handleSearchChange=(e)=>{
         this.setState({query:e.target.value})
@@ -16,6 +16,9 @@ export default class SearchPage extends Component {
         this.setState({movies: data})
         
     }
+    handleClickFavorite = async(item)=>{
+        await createFavorite(item, this.props.token)
+    }
     render() {
         return (
             <div className="main">
@@ -25,7 +28,7 @@ export default class SearchPage extends Component {
                         <input onChange={this.handleSearchChange} value={this.state.query}/>
                         <button>search</button>
                     </form>
-                    <MovieList movies={this.state.movies}/>
+                    <MovieList movies={this.state.movies} handleClickFavorite={this.handleClickFavorite}/>
                 </div>
             </div>
         )

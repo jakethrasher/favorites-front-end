@@ -23,3 +23,11 @@ export async function getData(token, query){
     
     return response.body
 }
+export async function createFavorite(favItem, token){
+    const response = await request
+    .post(`${URL}/api/favorites`)
+    .set('Authorization', token)
+    .send(favItem)
+
+    return response.body;
+}
