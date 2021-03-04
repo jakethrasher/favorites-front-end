@@ -31,3 +31,10 @@ export async function createFavorite(favItem, token){
 
     return response.body;
 }
+export async function fetchFavorites(token){
+    const response = await request
+    .get(`${URL}/api/favorites`)
+    .set('Authorization', token)
+
+    return response.body
+}
