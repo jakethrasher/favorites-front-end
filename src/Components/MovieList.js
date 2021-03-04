@@ -7,10 +7,11 @@ export default class MovieList extends Component {
                 {this.props.movies.map(item=>
                     <div key={item.movie_db_id}>
                         <img src={`https://image.tmdb.org/t/p/w200${item.poster}`} alt={item.title}/>
-                        <p>{item.title}</p>
-                        <p>Release Date: {item.year}</p>
-                        <p>User rating: {item.rating}%</p>
-                        <p>Synopsis: {item.overview}</p>
+                        <button className="favorite-button">Add To Favorites</button>
+                        <p><strong>{item.title}</strong></p>
+                        <p><strong>Release Date: </strong>{item.year}</p>
+                        <p><strong>User rating: </strong>{item.rating}%</p>
+                        <p><strong>Synopsis: </strong>{item.overview}</p>
                     </div>    
                 )}
             </div>
