@@ -1,5 +1,9 @@
 export function getToken(){
     const token = localStorage.getItem('TOKEN');
     if(token) return JSON.parse(token);
-    else return '';
+    return '';
+}
+
+export function removeToken(){
+    return localStorage.setItem('TOKEN', '')
 }

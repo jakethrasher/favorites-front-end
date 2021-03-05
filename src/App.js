@@ -10,7 +10,7 @@ import SearchPage from './Components/SearchPage.js'
 import HomePage from './Components/HomePage.js';
 import SignUp from './AuthComponents/SignUp.js';
 import Login from './AuthComponents/Login.js';
-import { getToken } from './local-storage-utils.js';
+import { getToken, removeToken } from './local-storage-utils.js';
 
 
 
@@ -21,15 +21,21 @@ state = {
 }
 
 handleUserChange =(user)=>{
-  this.setState({user: user.token})
+  this.setState({token: user.token})
   localStorage.setItem('TOKEN', JSON.stringify(user.token))
 }
 
+handleSignOut = ()=>{
+  removeToken();
+  // window.location.reload();
+  window.location.href='/'
+}
     render() {
+      console.log(this.state.token)
         return (
             <div>
                 <Router>
-                  <Header/>
+                  <Header handleSignOut={this.handleSignOut}/>
                     <Switch>
                         <Route 
                             path="/" 

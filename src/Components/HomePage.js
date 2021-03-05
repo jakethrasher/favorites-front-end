@@ -7,6 +7,7 @@ export default class HomePage extends Component {
             display: 'flex',
             flexWrap:'wrap'
         } 
+        
         const text={
             margin:'0 auto'
         }

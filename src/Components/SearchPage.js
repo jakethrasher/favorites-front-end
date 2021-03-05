@@ -9,27 +9,32 @@ export default class SearchPage extends Component {
         favorites:[]
     }
     componentDidMount = async ()=>{
-        const favorites = await fetchFavorites(this.props.token)
-        this.setState({favorites: favorites})
+    
+        // await fetchFavorites(this.props.token)
+        console.log(this.props.token)
     }
+    
     handleSearchChange=(e)=>{
         this.setState({query:e.target.value})
     }
-
+   
     handleSubmit = async (e)=>{
         e.preventDefault();
-        const data = await getData(this.props.token, this.state.query)
-        this.setState({movies: data})
+        // const token = getToken();
+        const data = await getData(this.state.query,this.props.token)
+        this.setState({movies:data})
     }
+        
 
     handleClickFavorite = async(item)=>{
+
         await createFavorite(item, this.props.token);
         const favorites = await fetchFavorites(this.props.token)
         this.setState({favorites: favorites})
     }
     
     render() {
-        console.log(this.state.favorites)
+        
         return (
             <div className="main">
                 <div className="movie-list">

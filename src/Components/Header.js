@@ -12,6 +12,13 @@ export default class Header extends Component {
             backgroundColor: 'black',
             height: '4em',
         }
+        const button = {
+            backgroundColor:'black',
+            color: 'white',
+            border: 'none',
+            fontSize:'1.2em',
+            cursor:'pointer'
+        }
         return (
             <div style={ main }>
                 <div className="link-container">
@@ -20,6 +27,7 @@ export default class Header extends Component {
                     <NavLink to='/login'>Login</NavLink>
                     <NavLink to='/search'>Search</NavLink>
                     <NavLink to='/favorites'>Favorites</NavLink>
+                    <button style={ button }onClick={this.props.handleSignOut}>Sign Out</button>
                 </div>
             </div>
         )

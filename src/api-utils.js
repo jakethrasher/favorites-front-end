@@ -16,7 +16,7 @@ export async function loginUser(email,password){
     
     return response.body;
 }
-export async function getData(token, query){
+export async function getData(query, token){
     const response = await request
     .get(`${URL}/api/movies`)
     .query({search: query})
