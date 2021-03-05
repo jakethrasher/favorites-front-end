@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import { fetchFavorites } from '../api-utils'
-import { getToken } from '../local-storage-utils'
 import '../App.css'
 export default class FavoritesPage extends Component {
     state = {
         favorites:[],
-        token:getToken()
     }
     componentDidMount = async () =>{
-        const favoritesData = await fetchFavorites(this.state.token)
+        const favoritesData = await fetchFavorites(this.props.token)
         this.setState({favorites: favoritesData})
     }
     render() {

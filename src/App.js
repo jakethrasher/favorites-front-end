@@ -46,19 +46,19 @@ handleUserChange =(user)=>{
                           path="/login" 
                           exact
                           render={(routerProps) =>
-                          <Login handleUserChange={this.handleUserChange}{...routerProps} />} 
+                          <Login handleUserChange={this.handleUserChange} {...routerProps} />} 
                         />
                         <Route
                           path="/search" 
                           exact
                           render={(routerProps) =>
-                          <SearchPage token={this.state.token}{...routerProps} />} 
+                          <SearchPage token={this.state.token} {...routerProps} />} 
                         />
                         <Route
                           path="/favorites" 
                           exact                  
                           render={(routerProps) =>
-                          <FavoritesPage {...routerProps} />} 
+                          <FavoritesPage token={this.state.token} {...routerProps} />} 
                         />
                     </Switch>
                 </Router>

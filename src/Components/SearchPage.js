@@ -1,25 +1,35 @@
 import React, { Component } from 'react'
-import { createFavorite, getData } from '../api-utils'
+import { createFavorite, fetchFavorites, getData } from '../api-utils'
 import '../App.css'
 import MovieList from './MovieList.js'
 export default class SearchPage extends Component {
     state={
         movies:[],
         query:'',
+        favorites:[]
+    }
+    componentDidMount = async ()=>{
+        const favorites = await fetchFavorites(this.props.token)
+        this.setState({favorites: favorites})
     }
     handleSearchChange=(e)=>{
         this.setState({query:e.target.value})
     }
+
     handleSubmit = async (e)=>{
         e.preventDefault();
         const data = await getData(this.props.token, this.state.query)
         this.setState({movies: data})
-        
     }
+
     handleClickFavorite = async(item)=>{
-        await createFavorite(item, this.props.token)
+        await createFavorite(item, this.props.token);
+        const favorites = await fetchFavorites(this.props.token)
+        this.setState({favorites: favorites})
     }
+    
     render() {
+        console.log(this.state.favorites)
         return (
             <div className="main">
                 <div className="movie-list">
@@ -28,7 +38,7 @@ export default class SearchPage extends Component {
                         <input onChange={this.handleSearchChange} value={this.state.query}/>
                         <button>search</button>
                     </form>
-                    <MovieList movies={this.state.movies} handleClickFavorite={this.handleClickFavorite}/>
+                    <MovieList movies={this.state.movies} handleClickFavorite={this.handleClickFavorite} favorites={this.state.favorites}/>
                 </div>
             </div>
         )
