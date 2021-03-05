@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { serialize } from 'superagent'
 
 export default class HomePage extends Component {
     render() {
